@@ -68,13 +68,13 @@ const addMySnippet = asyncHandler(async (req, res) => {
     res.status(200).json(   new apiResponse(200 , snippet , "Snippet Uploaded Successfully"))
 });
 
-
-// const getComments = asyncHandler(async (req,res) =>{
-//     const _id = req.query
-
-//     await Comment.find({snippetId : _id})
-
-// })
+const getSnippetById = asyncHandler(async (req,res)=>{
+  const _id = req.query._id
+  console.log(_id)
+  const snippet = await Snippet.findById(_id).select("-ownerToken")
+  console.log(snippet)
+  return res.status(200).json(new apiResponse(200,snippet, "Snippet fetched successfully"))
+})
 
 
 const deleteSnippet = asyncHandler(async(req,res)=>{
@@ -93,4 +93,4 @@ const deleteSnippet = asyncHandler(async(req,res)=>{
    
 })
 
-export { getNextSetOfSnippets , addMySnippet , deleteSnippet};
+export { getNextSetOfSnippets , addMySnippet , deleteSnippet , getSnippetById};

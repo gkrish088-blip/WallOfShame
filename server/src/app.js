@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-// import multer from "multer"
+import multer from "multer"
 import cookieParser from "cookie-parser"
 
 const app = express()
@@ -20,13 +20,14 @@ app.use(upload.none())
 
 // import router
 import snippetRouter from "./routes/snippet.routes.js"
-import multer from "multer"
+import commentRouter from "./routes/comments.routes.js"
+// import multer from "multer"
 
 
 // routesDeclaration
 app.use("/api/v1/snippets", snippetRouter)  // so here actuall rote becomes http://localhost:8000/api/v1/users
 // and after this contoll moves to userRouter where actuall rote becomes http://localhost:8000/api/v1/users/register
-
+app.use("/api/v1/comments" , commentRouter)
  
 
 export { app }

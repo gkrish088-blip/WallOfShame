@@ -81,7 +81,7 @@ const deleteSnippet = asyncHandler(async(req,res)=>{
     const _id = req.body
 
     const deleteInstance = await Snippet.deleteOne({_id : _id})
-    if (!deleteInstance) {
+    if (deleteInstance.deletedCount == 0) {
         throw new errResponse(407,"Snippet Not Found")
     }
     console.log(deleteInstance)

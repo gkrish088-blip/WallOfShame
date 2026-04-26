@@ -2,13 +2,14 @@ import js from "@eslint/js";
 import axios, { AxiosError } from "axios";
 const server = "/api/v1" 
 const getMoreData = async (page) => {
-  //returns an array of 10 json objects , each feild can be accessed by using .
+  //returns an array of 8 json objects , each feild can be accessed by using .
   try {
     const jsonSnippets = await axios.get(
-      `${server}/snippets/getnewsnippets?page=${page}&limit=10`
+      `${server}/snippets/getnewsnippets?page=${page}&limit=8`
     );
+    console.log( await jsonSnippets.data.data , "index.js")
 
-    return jsonSnippets.data.data.users;
+    return jsonSnippets.data.data;
   } catch (error) {
     throw error;
     console.error(error);
@@ -131,3 +132,6 @@ const getcommentswrtsnippets =  async(snippetId)=>{
 }
 
 // console.log(await getcommentswrtsnippets(String("69eabef3457307a1231325f0")))
+
+
+export {getMoreData , addSnippet , deleteSnippet , getSnippetById , addComment , deleteComment , getcommentswrtsnippets}
